@@ -1,0 +1,29 @@
+# Job-Connect Project Instructions
+
+## 1. Prerequisites
+- PHP 8.1 or higher
+- MySQL / MariaDB
+- Apache with mod_rewrite enabled
+
+## 2. Database Setup
+1. Create a database named `job_connect` in your MySQL server (e.g., via phpMyAdmin).
+2. Import the provided `database.sql` file into this database.
+3. Database configuration is located in `app/Config/Database.php`. It is currently set to:
+   - Hostname: localhost
+   - Username: jobuser
+   - Password: TestPass!2025
+   - Database: job_connect
+   *Please update these values in `app/Config/Database.php` if your local setup is different.*
+
+## 3. How to Run
+1. Place the project folder in your web server's root (e.g., `htdocs` for XAMPP).
+2. Access the project via: `http://localhost/job-connect/`
+   - *Note: The project automatically redirects to the `public/` folder for security.*
+
+## 4. Admin Credentials
+- **URL**: `http://localhost/job-connect/auth/login`
+- **Email**: admin@libyanjobs.com
+- **Password**: admin123
+
+## 5. Important Note
+The `vendor` folder is included and is required for the project to function. Do not delete it.
