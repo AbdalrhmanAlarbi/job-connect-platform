@@ -6,14 +6,22 @@
 - Apache with mod_rewrite enabled
 
 ## 2. Database Setup
-1. Create a database named `job_connect` in your MySQL server (e.g., via phpMyAdmin).
-2. Import the provided `database.sql` file into this database.
-3. Database configuration is located in `app/Config/Database.php`. It is currently set to:
+1. Create a database named `job_connect` in your MySQL server (via phpMyAdmin or command line).
+2. Create the database user (required):
+   ```sql
+   CREATE USER 'jobuser'@'localhost' IDENTIFIED BY 'TestPass!2025';
+   GRANT ALL PRIVILEGES ON job_connect.* TO 'jobuser'@'localhost';
+   FLUSH PRIVILEGES;
+   ```
+3. Import the provided `database.sql` file into the `job_connect` database.
+   - File contains: 10 tables with 6000+ records including users, companies, jobs, and applications
+4. Configuration is already set in `app/Config/Database.php`:
    - Hostname: localhost
    - Username: jobuser
    - Password: TestPass!2025
    - Database: job_connect
-   *Please update these values in `app/Config/Database.php` if your local setup is different.*
+   
+   *Note: These credentials are pre-configured. Only modify if using different database credentials.*
 
 ## 3. How to Run
 1. Place the project folder in your web server's root (e.g., `htdocs` for XAMPP).

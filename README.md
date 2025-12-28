@@ -18,16 +18,42 @@ composer install
 This will install all necessary framework dependencies (CodeIgniter 4 and libraries).
 
 ## 3. Database Setup
-1. Open your database management tool (phpMyAdmin, DBeaver, etc.).
-2. Create a new database named `job_connect`.
-3. Import the provided SQL file: `database.sql` (located in the project root).
-4. **Configuration**: The project is pre-configured for a standard local setup.
-   - **File**: `app/Config/Database.php`
-   - **Default User**: `root`
-   - **Default Password**: (empty)
-   - **Database Name**: `job_connect`
-   
-   *If your database has a password, open `app/Config/Database.php` and edit line 31.*
+
+### Step 1: Create Database
+1. Open your database management tool (phpMyAdmin, MySQL Workbench, command line, etc.)
+2. Create a new database:
+   ```sql
+   CREATE DATABASE job_connect CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+   ```
+
+### Step 2: Create Database User
+The project uses dedicated database credentials. Create the MySQL user:
+
+```sql
+CREATE USER 'jobuser'@'localhost' IDENTIFIED BY 'TestPass!2025';
+GRANT ALL PRIVILEGES ON job_connect.* TO 'jobuser'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+> **Note**: If you prefer to use your existing MySQL root user, you can modify the credentials in `app/Config/Database.php` (lines 30-31).
+
+### Step 3: Import Database
+Import the provided SQL file into the `job_connect` database:
+- **File**: `database.sql` (located in project root, ~3.2 MB with full data)
+- **Contains**: 10 tables with hundreds of records (users, companies, jobs, applications, etc.)
+
+**Via phpMyAdmin**: Select `job_connect` database → Import → Choose `database.sql`  
+**Via Command Line**:
+```bash
+mysql -u jobuser -p'TestPass!2025' job_connect < database.sql
+```
+
+### Step 4: Verify Configuration
+Database settings are in `app/Config/Database.php`:
+- **Hostname**: `localhost`
+- **Username**: `jobuser`
+- **Password**: `TestPass!2025`
+- **Database**: `job_connect`
 
 ## 4. Run the Application
 Start the built-in development server:
@@ -38,6 +64,10 @@ php spark serve
 
 Open your browser and navigate to: http://localhost:8080
 
-## 5. Admin Credentials (If Applicable)
-- **Email**: `admin@admin.com`
-- **Password**: `password123` (or as configured in database)
+## 5. Admin Access
+To access the admin dashboard:
+- **URL**: http://localhost:8080/auth/login
+- **Admin Email**: `admin@libyanjobs.com`
+- **Admin Password**: `admin123`
+
+After logging in as admin, you can manage users, companies, jobs, and applications.
