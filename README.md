@@ -21,18 +21,13 @@ This will install all necessary framework dependencies (CodeIgniter 4 and librar
 1. Open your database management tool (phpMyAdmin, DBeaver, etc.).
 2. Create a new database named `job_connect`.
 3. Import the provided SQL file: `database.sql` (located in the project root).
-4. Rename the `env` file to `.env` if you haven't already:
-   ```bash
-   cp env .env
-   ```
-5. Open `.env` and verify your database credentials match:
-   ```ini
-   database.default.hostname = localhost
-   database.default.database = job_connect
-   database.default.username = root
-   database.default.password = 
-   database.default.DBDriver = MySQLi
-   ```
+4. **Configuration**: The project is pre-configured for a standard local setup.
+   - **File**: `app/Config/Database.php`
+   - **Default User**: `root`
+   - **Default Password**: (empty)
+   - **Database Name**: `job_connect`
+   
+   *If your database has a password, open `app/Config/Database.php` and edit line 31.*
 
 ## 4. Run the Application
 Start the built-in development server:
